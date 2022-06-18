@@ -27,10 +27,15 @@ public class enemyScript : MonoBehaviour
 
     public bool isDead = false;
 
+   
     private void Start()
     {
         currentHealth = maxHealth;
         healthBarO.SetMaxHealth(maxHealth);
+
+       
+
+        playerCenter = GameObject.FindWithTag("PlayerCenter");
     }
 
 

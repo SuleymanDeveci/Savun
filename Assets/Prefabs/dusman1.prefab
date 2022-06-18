@@ -160,8 +160,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca0fefe5f76c6604384859154f48481f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerCenter: {fileID: 558934621225795006, guid: 314b12d8966b75446848ca6ba6bc26ad,
-    type: 3}
+  playerCenter: {fileID: 0}
   anim: {fileID: 1722949518560626924}
   colliderA: {fileID: 1722949518560626921}
   bulletSc: {fileID: 0}
