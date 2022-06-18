@@ -5,12 +5,14 @@ using UnityEngine;
 public class enemyScript : MonoBehaviour
 {
 
-    public GameObject playerCenter;
+    
     public Animator anim;
     public Collider2D colliderA;
     public bullet bulletSc;
     public healthBar healthBarO;
     public GameObject minimapicon;
+    public GameObject playerCenter;
+ 
 
 
 
