@@ -4,23 +4,20 @@ using UnityEngine;
 
 public class enemyScript : MonoBehaviour
 {
-
-    
     public Animator anim;
-    public Collider2D colliderA;
+
+    public Collider2D colliderA; // düþmanýn coliderý (coliderý ayrý olarak almak istedim çünkü düþman öldükten sonra, düþman objesini hemen yok edemem çünkü ölüm animasyonu oynuyor
+                                 // bu yüzden düþman öldüðü anda coliderý yok edeceðim bu sayede ölüm animasyonu oynayan düþmana takýlmayacaðým.
+
     public bullet bulletSc;
     public healthBar healthBarO;
+
     public GameObject minimapicon;
     public GameObject playerCenter;
- 
-
-
-
 
     public Vector3 targetVector;
     public Vector3 currentVector;
  
-
     public float speed;
 
     public int maxHealth = 100;
@@ -42,12 +39,6 @@ public class enemyScript : MonoBehaviour
         {
             Move();
         }
-
-        
-        
-        
-
-        
     }
 
     public void TakeDamage(int damage)
@@ -55,10 +46,8 @@ public class enemyScript : MonoBehaviour
         currentHealth -= damage;
         healthBarO.SetHealth(currentHealth);
 
-
         if (currentHealth <= 0)
         {
-            
             Die();
         }
     }
@@ -67,16 +56,12 @@ public class enemyScript : MonoBehaviour
     {
         isDead = true;
         anim.SetTrigger("dieTrigger");
+
         Destroy(colliderA);
         Destroy(healthBarO.gameObject);
         Destroy(minimapicon);
 
-
-        StartCoroutine(bekle());
-
-        
-        
-
+        StartCoroutine(bekle()); // Ölen düþmaný yok etmek için ölüm animasyonunun tamamlanmasýný bekliyorum
     }
 
     private void Move()
@@ -84,36 +69,25 @@ public class enemyScript : MonoBehaviour
         currentVector = transform.position;
         targetVector = playerCenter.transform.position;
         transform.position = Vector3.MoveTowards(currentVector, targetVector, speed * Time.deltaTime);
-
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        
-
         if (collision.tag == "bullet")
         {
             bulletSc = collision.gameObject.GetComponent<bullet>();
             TakeDamage(bulletSc.hasar);
             Destroy(collision);
         }
-        
     }
 
     IEnumerator bekle()
     {
         //Beklemeden önce 
 
-
         yield return new WaitForSecondsRealtime(9.5f); //Beklenecek zaman
         Destroy(gameObject);
 
-
         //Beklemeden sonra
-
-
-        
     }
-
-    
 }
